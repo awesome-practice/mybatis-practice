@@ -9,7 +9,7 @@
     <context id="MySQL" targetRuntime="MyBatis3Simple"><!-- MyBatis3, MyBatis3Simple, MyBatis3DynamicSql-->
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mybatis_practice"
+                        connectionURL="jdbc:mysql://localhost:3306"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -33,7 +33,7 @@
 
         <!--<table tableName="woman"/>-->
         <!--<table tableName="girl_friend"/>-->
-        <table tableName="human_relation"/>
+        <table schema="mybatis_practice" tableName="human_relation"/>
 
     </context>
 </generatorConfiguration>
