@@ -9,7 +9,7 @@
     <context id="MySQL" targetRuntime="MyBatis3Simple"><!-- MyBatis3, MyBatis3Simple, MyBatis3DynamicSql-->
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306"
+                        connectionURL="jdbc:mysql://localhost:3306/sakila"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -18,22 +18,23 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.practice.mybatis.model" targetProject=".\src\main\java">
+        <javaModelGenerator targetPackage="com.practice.mybatis.repository.sakila.entity" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="com.practice.mybatis.repository.sakila" targetProject=".\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.dao" targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.repository.sakila" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--<table tableName="woman"/>-->
         <!--<table tableName="girl_friend"/>-->
-        <table schema="mybatis_practice" tableName="human_relation"/>
+        <table tableName="actor"/>
+<!--        <table schema="sakila" tableName="actor"/>-->
 
     </context>
 </generatorConfiguration>

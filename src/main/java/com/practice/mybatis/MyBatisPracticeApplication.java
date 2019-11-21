@@ -12,27 +12,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2018/8/14
  */
 @SpringBootApplication
-@MapperScan("com.practice.mybatis.dao")
-public class MyBatisPracticeApplication implements CommandLineRunner {
+@MapperScan({"com.practice.mybatis.repository.sakila"})
+public class MyBatisPracticeApplication {
 
-    private WomanMapper womanMapper;
-
-    public MyBatisPracticeApplication(WomanMapper womanMapper) {
-        this.womanMapper = womanMapper;
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(MyBatisPracticeApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
 
-        Woman woman=new Woman();
-        woman.setAge(17);
-        woman.setHeight(180);
-        woman.setName("Lily");
-
-        womanMapper.insert(woman);
-    }
 }
