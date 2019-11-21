@@ -19,4 +19,6 @@ public class QueryRequest {
 
     private String index = "or";
 
+    private Strategy strategy=Strategy.FIRST;
+
 }

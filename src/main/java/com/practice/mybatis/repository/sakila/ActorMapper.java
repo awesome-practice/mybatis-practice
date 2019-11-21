@@ -50,5 +50,6 @@ public interface ActorMapper {
     List<Actor> selectAllShard1(QueryRequest request);
     List<Actor> selectAllShard2(QueryRequest request);
     List<Actor> selectAllShard3(QueryRequest request);
+    Actor selectByStrategy(QueryRequest request);
 
 }

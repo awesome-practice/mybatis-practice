@@ -2,6 +2,7 @@ package com.practice.mybatis.repository.sakila;
 
 
 import com.practice.mybatis.ao.QueryRequest;
+import com.practice.mybatis.ao.Strategy;
 import com.practice.mybatis.repository.sakila.entity.Actor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -51,6 +52,14 @@ public class ActorMapperTest {
     void selectAllShard3() {
         List<Actor> actors = actorMapper.selectAllShard3(new QueryRequest());
         System.out.println("actors = " + actors);
+
+    }
+    @Test
+    void selectByStrategy() {
+        QueryRequest request = new QueryRequest();
+        request.setStrategy(Strategy.SECOND);
+        Actor actor = actorMapper.selectByStrategy(request);
+        System.out.println("actors = " + actor);
 
     }
 
