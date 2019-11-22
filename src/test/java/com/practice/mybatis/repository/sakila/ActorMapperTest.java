@@ -22,20 +22,31 @@ public class ActorMapperTest {
     @Autowired
     private ActorMapper actorMapper;
 
+    @Autowired
+    private ActorMapperProxy actorMapperProxy;
 
+
+    @Test
+    void selectAllProxy() {
+        List<Actor> actors = actorMapperProxy.selectAll();
+        System.out.println("actors = " + actors);
+
+    }
     @Test
     void selectAll() {
         List<Actor> actors = actorMapper.selectAll();
         System.out.println("actors = " + actors);
 
     }
-      @Test
+
+    @Test
     void selectAllShard() {
         List<Actor> actors = actorMapper.selectAllShard(new QueryRequest());
         System.out.println("actors = " + actors);
 
     }
-      @Test
+
+    @Test
     void selectAllShard1() {
         List<Actor> actors = actorMapper.selectAllShard1(new QueryRequest());
         System.out.println("actors = " + actors);
@@ -48,12 +59,14 @@ public class ActorMapperTest {
         System.out.println("actors = " + actors);
 
     }
+
     @Test
     void selectAllShard3() {
         List<Actor> actors = actorMapper.selectAllShard3(new QueryRequest());
         System.out.println("actors = " + actors);
 
     }
+
     @Test
     void selectByStrategy() {
         QueryRequest request = new QueryRequest();
