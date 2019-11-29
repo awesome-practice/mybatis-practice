@@ -68,6 +68,13 @@ public class ActorMapperTest {
     }
 
     @Test
+    void selectAllShard4() {
+        List<Actor> actors = actorMapper.selectAllShard4(new QueryRequest());
+        System.out.println("actors = " + actors);
+
+    }
+
+    @Test
     void selectByStrategy() {
         QueryRequest request = new QueryRequest();
         request.setStrategy(Strategy.SECOND);

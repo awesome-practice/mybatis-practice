@@ -2,6 +2,7 @@ package com.practice.mybatis.repository.sakila;
 
 import com.practice.mybatis.ao.QueryRequest;
 import com.practice.mybatis.repository.sakila.entity.Actor;
+
 import java.util.List;
 
 public interface ActorMapper {
@@ -50,6 +51,8 @@ public interface ActorMapper {
     List<Actor> selectAllShard1(QueryRequest request);
     List<Actor> selectAllShard2(QueryRequest request);
     List<Actor> selectAllShard3(QueryRequest request);
+
+    List<Actor> selectAllShard4(QueryRequest request);
     Actor selectByStrategy(QueryRequest request);
 
 }

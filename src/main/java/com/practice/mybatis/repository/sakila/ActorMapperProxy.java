@@ -65,6 +65,11 @@ public class ActorMapperProxy  implements ActorMapper  {
     }
 
     @Override
+    public List<Actor> selectAllShard4(QueryRequest request) {
+        return null;
+    }
+
+    @Override
     public Actor selectByStrategy(QueryRequest request) {
         return null;
     }

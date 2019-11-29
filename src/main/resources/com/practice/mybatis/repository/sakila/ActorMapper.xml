@@ -76,14 +76,18 @@
 
   <select id="selectAllShard2" resultType="com.practice.mybatis.repository.sakila.entity.Actor">
     select actor_id, first_name, last_name, last_update
-    from  ${@com.practice.mybatis.util.TableShard@getActorPrefix(index)}
+    from ${@com.practice.mybatis.util.TableShard@getActorBySuffix(index)}
   </select>
 
 
   <select id="selectAllShard3" resultType="com.practice.mybatis.repository.sakila.entity.Actor">
     select actor_id, first_name, last_name, last_update
     from  act${index}
+  </select>
 
+  <select id="selectAllShard4" resultType="com.practice.mybatis.repository.sakila.entity.Actor">
+    select actor_id, first_name, last_name, last_update
+    from act${@com.practice.mybatis.util.TableShard@getSuffix(index)}
   </select>
 
   <select id="selectByStrategy" parameterType="java.lang.Short" resultMap="BaseResultMap">
