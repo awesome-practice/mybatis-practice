@@ -6,38 +6,45 @@
 <!--  http://www.mybatis.org/generator/configreference/xmlconfig.html -->
 <generatorConfiguration>
 
-    <context id="MySQL" targetRuntime="MyBatis3Simple"><!-- MyBatis3, MyBatis3Simple, MyBatis3DynamicSql-->
+    <context id="MySQL" targetRuntime="MyBatis3"><!-- MyBatis3, MyBatis3Simple, MyBatis3DynamicSql-->
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
+        <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+        <!--                        connectionURL="jdbc:mysql://localhost:3306/sakila"-->
+        <!--                        userId="root"-->
+        <!--                        password="root">-->
+        <!--        </jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/sakila"
+                        connectionURL="jdbc:mysql://192.168.100.133:3306/rednet"
                         userId="root"
-                        password="root">
+                        password="38ue(U)00">
         </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.practice.mybatis.repository.sakila.entity" targetProject=".\src\main\java">
-            <property name="enableSubPackages" value="true"/>
+        <javaModelGenerator targetPackage="com.practice.mybatis.repository.rednet.entity"
+                            targetProject=".\src\main\java">
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.practice.mybatis.repository.sakila" targetProject=".\src\main\resources">
-            <property name="enableSubPackages" value="true"/>
+        <sqlMapGenerator targetPackage="com.practice.mybatis.repository.rednet" targetProject=".\src\main\resources">
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.repository.sakila" targetProject=".\src\main\java">
-            <property name="enableSubPackages" value="true"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.repository.rednet"
+                             targetProject=".\src\main\java">
         </javaClientGenerator>
 
         <!--<table tableName="woman"/>-->
         <!--<table tableName="girl_friend"/>-->
-        <table tableName="actor"/>
-<!--        <table schema="sakila" tableName="actor"/>-->
+        <!--        <table tableName="actor"/>-->
+        <!--        <table tableName="file"  enableCountByExample="false" enableSelectByExample="false"-->
+        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
+        <table tableName="resource" enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false"/>
 
     </context>
 </generatorConfiguration>
