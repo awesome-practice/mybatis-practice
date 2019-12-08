@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.mybatis.repository.rednet.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.rednet.entity.Resource">
+        <id column="resource_id" jdbcType="BIGINT" property="resourceId"/>
+        <result column="rank" jdbcType="TINYINT" property="rank"/>
+        <result column="value_types" jdbcType="VARCHAR" property="valueTypes"/>
+        <result column="intrinsic_height" jdbcType="INTEGER" property="intrinsicHeight"/>
+        <result column="intrinsic_width" jdbcType="INTEGER" property="intrinsicWidth"/>
+        <result column="intrinsic_title" jdbcType="VARCHAR" property="intrinsicTitle"/>
+        <result column="intrinsic_author" jdbcType="VARCHAR" property="intrinsicAuthor"/>
+        <result column="intrinsic_shoot_place" jdbcType="VARCHAR" property="intrinsicShootPlace"/>
+        <result column="intrinsic_copyright_description" jdbcType="VARCHAR" property="intrinsicCopyrightDescription"/>
+        <result column="duration_length" jdbcType="INTEGER" property="durationLength"/>
+        <result column="preview_objectpath" jdbcType="VARCHAR" property="previewObjectpath"/>
+        <result column="keyframe_objectpath" jdbcType="VARCHAR" property="keyframeObjectpath"/>
+        <result column="constitutive_audio_objectpath" jdbcType="VARCHAR" property="constitutiveAudioObjectpath"/>
+        <result column="audio_ripple_objectpath" jdbcType="VARCHAR" property="audioRippleObjectpath"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.practice.mybatis.repository.rednet.entity.ResourceWithBLOBs">
+        <result column="handwritten_keywords" jdbcType="LONGVARCHAR" property="handwrittenKeywords"/>
+        <result column="custom_labels" jdbcType="LONGVARCHAR" property="customLabels"/>
+        <result column="description" jdbcType="LONGVARCHAR" property="description"/>
+        <result column="transcode_outputs" jdbcType="LONGVARCHAR" property="transcodeOutputs"/>
+        <result column="ai_detect_labels" jdbcType="LONGVARCHAR" property="aiDetectLabels"/>
+        <result column="ai_face_recog_labels" jdbcType="LONGVARCHAR" property="aiFaceRecogLabels"/>
+        <result column="ai_object_recog_labels" jdbcType="LONGVARCHAR" property="aiObjectRecogLabels"/>
+        <result column="ai_asr_labels" jdbcType="LONGVARCHAR" property="aiAsrLabels"/>
+        <result column="ai_ocr_labels" jdbcType="LONGVARCHAR" property="aiOcrLabels"/>
+        <result column="ai_nlp_labels" jdbcType="LONGVARCHAR" property="aiNlpLabels"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        resource_id, rank, value_types, intrinsic_height, intrinsic_width, intrinsic_title,
+    intrinsic_author, intrinsic_shoot_place, intrinsic_copyright_description, duration_length,
+    preview_objectpath, keyframe_objectpath, constitutive_audio_objectpath, audio_ripple_objectpath,
+    update_time, create_time
+    </sql>
+    <sql id="Blob_Column_List">
+        handwritten_keywords, custom_labels, description, transcode_outputs, ai_detect_labels,
+    ai_face_recog_labels, ai_object_recog_labels, ai_asr_labels, ai_ocr_labels, ai_nlp_labels
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from resource
+        where resource_id = #{resourceId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from resource
+        where resource_id = #{resourceId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.practice.mybatis.repository.rednet.entity.ResourceWithBLOBs">
+        insert into resource (resource_id, rank, value_types,
+                              intrinsic_height, intrinsic_width, intrinsic_title,
+                              intrinsic_author, intrinsic_shoot_place, intrinsic_copyright_description,
+                              duration_length, preview_objectpath, keyframe_objectpath,
+                              constitutive_audio_objectpath, audio_ripple_objectpath,
+                              update_time, create_time, handwritten_keywords,
+                              custom_labels, description, transcode_outputs,
+                              ai_detect_labels, ai_face_recog_labels,
+                              ai_object_recog_labels, ai_asr_labels,
+                              ai_ocr_labels, ai_nlp_labels)
+        values (#{resourceId,jdbcType=BIGINT}, #{rank,jdbcType=TINYINT}, #{valueTypes,jdbcType=VARCHAR},
+                #{intrinsicHeight,jdbcType=INTEGER}, #{intrinsicWidth,jdbcType=INTEGER},
+                #{intrinsicTitle,jdbcType=VARCHAR},
+                #{intrinsicAuthor,jdbcType=VARCHAR}, #{intrinsicShootPlace,jdbcType=VARCHAR},
+                #{intrinsicCopyrightDescription,jdbcType=VARCHAR},
+                #{durationLength,jdbcType=INTEGER}, #{previewObjectpath,jdbcType=VARCHAR},
+                #{keyframeObjectpath,jdbcType=VARCHAR},
+                #{constitutiveAudioObjectpath,jdbcType=VARCHAR}, #{audioRippleObjectpath,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+                #{handwrittenKeywords,jdbcType=LONGVARCHAR},
+                #{customLabels,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR},
+                #{transcodeOutputs,jdbcType=LONGVARCHAR},
+                #{aiDetectLabels,jdbcType=LONGVARCHAR}, #{aiFaceRecogLabels,jdbcType=LONGVARCHAR},
+                #{aiObjectRecogLabels,jdbcType=LONGVARCHAR}, #{aiAsrLabels,jdbcType=LONGVARCHAR},
+                #{aiOcrLabels,jdbcType=LONGVARCHAR}, #{aiNlpLabels,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.practice.mybatis.repository.rednet.entity.ResourceWithBLOBs">
+        insert into resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                resource_id,
+            </if>
+            <if test="rank != null">
+                rank,
+            </if>
+            <if test="valueTypes != null">
+                value_types,
+            </if>
+            <if test="intrinsicHeight != null">
+                intrinsic_height,
+            </if>
+            <if test="intrinsicWidth != null">
+                intrinsic_width,
+            </if>
+            <if test="intrinsicTitle != null">
+                intrinsic_title,
+            </if>
+            <if test="intrinsicAuthor != null">
+                intrinsic_author,
+            </if>
+            <if test="intrinsicShootPlace != null">
+                intrinsic_shoot_place,
+            </if>
+            <if test="intrinsicCopyrightDescription != null">
+                intrinsic_copyright_description,
+            </if>
+            <if test="durationLength != null">
+                duration_length,
+            </if>
+            <if test="previewObjectpath != null">
+                preview_objectpath,
+            </if>
+            <if test="keyframeObjectpath != null">
+                keyframe_objectpath,
+            </if>
+            <if test="constitutiveAudioObjectpath != null">
+                constitutive_audio_objectpath,
+            </if>
+            <if test="audioRippleObjectpath != null">
+                audio_ripple_objectpath,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="handwrittenKeywords != null">
+                handwritten_keywords,
+            </if>
+            <if test="customLabels != null">
+                custom_labels,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="transcodeOutputs != null">
+                transcode_outputs,
+            </if>
+            <if test="aiDetectLabels != null">
+                ai_detect_labels,
+            </if>
+            <if test="aiFaceRecogLabels != null">
+                ai_face_recog_labels,
+            </if>
+            <if test="aiObjectRecogLabels != null">
+                ai_object_recog_labels,
+            </if>
+            <if test="aiAsrLabels != null">
+                ai_asr_labels,
+            </if>
+            <if test="aiOcrLabels != null">
+                ai_ocr_labels,
+            </if>
+            <if test="aiNlpLabels != null">
+                ai_nlp_labels,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                #{resourceId,jdbcType=BIGINT},
+            </if>
+            <if test="rank != null">
+                #{rank,jdbcType=TINYINT},
+            </if>
+            <if test="valueTypes != null">
+                #{valueTypes,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicHeight != null">
+                #{intrinsicHeight,jdbcType=INTEGER},
+            </if>
+            <if test="intrinsicWidth != null">
+                #{intrinsicWidth,jdbcType=INTEGER},
+            </if>
+            <if test="intrinsicTitle != null">
+                #{intrinsicTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicAuthor != null">
+                #{intrinsicAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicShootPlace != null">
+                #{intrinsicShootPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicCopyrightDescription != null">
+                #{intrinsicCopyrightDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="durationLength != null">
+                #{durationLength,jdbcType=INTEGER},
+            </if>
+            <if test="previewObjectpath != null">
+                #{previewObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="keyframeObjectpath != null">
+                #{keyframeObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="constitutiveAudioObjectpath != null">
+                #{constitutiveAudioObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="audioRippleObjectpath != null">
+                #{audioRippleObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handwrittenKeywords != null">
+                #{handwrittenKeywords,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="customLabels != null">
+                #{customLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="transcodeOutputs != null">
+                #{transcodeOutputs,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiDetectLabels != null">
+                #{aiDetectLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiFaceRecogLabels != null">
+                #{aiFaceRecogLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiObjectRecogLabels != null">
+                #{aiObjectRecogLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiAsrLabels != null">
+                #{aiAsrLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiOcrLabels != null">
+                #{aiOcrLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiNlpLabels != null">
+                #{aiNlpLabels,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.practice.mybatis.repository.rednet.entity.ResourceWithBLOBs">
+        update resource
+        <set>
+            <if test="rank != null">
+                rank = #{rank,jdbcType=TINYINT},
+            </if>
+            <if test="valueTypes != null">
+                value_types = #{valueTypes,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicHeight != null">
+                intrinsic_height = #{intrinsicHeight,jdbcType=INTEGER},
+            </if>
+            <if test="intrinsicWidth != null">
+                intrinsic_width = #{intrinsicWidth,jdbcType=INTEGER},
+            </if>
+            <if test="intrinsicTitle != null">
+                intrinsic_title = #{intrinsicTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicAuthor != null">
+                intrinsic_author = #{intrinsicAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicShootPlace != null">
+                intrinsic_shoot_place = #{intrinsicShootPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="intrinsicCopyrightDescription != null">
+                intrinsic_copyright_description = #{intrinsicCopyrightDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="durationLength != null">
+                duration_length = #{durationLength,jdbcType=INTEGER},
+            </if>
+            <if test="previewObjectpath != null">
+                preview_objectpath = #{previewObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="keyframeObjectpath != null">
+                keyframe_objectpath = #{keyframeObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="constitutiveAudioObjectpath != null">
+                constitutive_audio_objectpath = #{constitutiveAudioObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="audioRippleObjectpath != null">
+                audio_ripple_objectpath = #{audioRippleObjectpath,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="handwrittenKeywords != null">
+                handwritten_keywords = #{handwrittenKeywords,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="customLabels != null">
+                custom_labels = #{customLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="transcodeOutputs != null">
+                transcode_outputs = #{transcodeOutputs,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiDetectLabels != null">
+                ai_detect_labels = #{aiDetectLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiFaceRecogLabels != null">
+                ai_face_recog_labels = #{aiFaceRecogLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiObjectRecogLabels != null">
+                ai_object_recog_labels = #{aiObjectRecogLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiAsrLabels != null">
+                ai_asr_labels = #{aiAsrLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiOcrLabels != null">
+                ai_ocr_labels = #{aiOcrLabels,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="aiNlpLabels != null">
+                ai_nlp_labels = #{aiNlpLabels,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where resource_id = #{resourceId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs"
+            parameterType="com.practice.mybatis.repository.rednet.entity.ResourceWithBLOBs">
+        update resource
+        set rank                            = #{rank,jdbcType=TINYINT},
+            value_types                     = #{valueTypes,jdbcType=VARCHAR},
+            intrinsic_height                = #{intrinsicHeight,jdbcType=INTEGER},
+            intrinsic_width                 = #{intrinsicWidth,jdbcType=INTEGER},
+            intrinsic_title                 = #{intrinsicTitle,jdbcType=VARCHAR},
+            intrinsic_author                = #{intrinsicAuthor,jdbcType=VARCHAR},
+            intrinsic_shoot_place           = #{intrinsicShootPlace,jdbcType=VARCHAR},
+            intrinsic_copyright_description = #{intrinsicCopyrightDescription,jdbcType=VARCHAR},
+            duration_length                 = #{durationLength,jdbcType=INTEGER},
+            preview_objectpath              = #{previewObjectpath,jdbcType=VARCHAR},
+            keyframe_objectpath             = #{keyframeObjectpath,jdbcType=VARCHAR},
+            constitutive_audio_objectpath   = #{constitutiveAudioObjectpath,jdbcType=VARCHAR},
+            audio_ripple_objectpath         = #{audioRippleObjectpath,jdbcType=VARCHAR},
+            update_time                     = #{updateTime,jdbcType=TIMESTAMP},
+            create_time                     = #{createTime,jdbcType=TIMESTAMP},
+            handwritten_keywords            = #{handwrittenKeywords,jdbcType=LONGVARCHAR},
+            custom_labels                   = #{customLabels,jdbcType=LONGVARCHAR},
+            description                     = #{description,jdbcType=LONGVARCHAR},
+            transcode_outputs               = #{transcodeOutputs,jdbcType=LONGVARCHAR},
+            ai_detect_labels                = #{aiDetectLabels,jdbcType=LONGVARCHAR},
+            ai_face_recog_labels            = #{aiFaceRecogLabels,jdbcType=LONGVARCHAR},
+            ai_object_recog_labels          = #{aiObjectRecogLabels,jdbcType=LONGVARCHAR},
+            ai_asr_labels                   = #{aiAsrLabels,jdbcType=LONGVARCHAR},
+            ai_ocr_labels                   = #{aiOcrLabels,jdbcType=LONGVARCHAR},
+            ai_nlp_labels                   = #{aiNlpLabels,jdbcType=LONGVARCHAR}
+        where resource_id = #{resourceId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.practice.mybatis.repository.rednet.entity.Resource">
+        update resource
+        set rank                            = #{rank,jdbcType=TINYINT},
+            value_types                     = #{valueTypes,jdbcType=VARCHAR},
+            intrinsic_height                = #{intrinsicHeight,jdbcType=INTEGER},
+            intrinsic_width                 = #{intrinsicWidth,jdbcType=INTEGER},
+            intrinsic_title                 = #{intrinsicTitle,jdbcType=VARCHAR},
+            intrinsic_author                = #{intrinsicAuthor,jdbcType=VARCHAR},
+            intrinsic_shoot_place           = #{intrinsicShootPlace,jdbcType=VARCHAR},
+            intrinsic_copyright_description = #{intrinsicCopyrightDescription,jdbcType=VARCHAR},
+            duration_length                 = #{durationLength,jdbcType=INTEGER},
+            preview_objectpath              = #{previewObjectpath,jdbcType=VARCHAR},
+            keyframe_objectpath             = #{keyframeObjectpath,jdbcType=VARCHAR},
+            constitutive_audio_objectpath   = #{constitutiveAudioObjectpath,jdbcType=VARCHAR},
+            audio_ripple_objectpath         = #{audioRippleObjectpath,jdbcType=VARCHAR},
+            update_time                     = #{updateTime,jdbcType=TIMESTAMP},
+            create_time                     = #{createTime,jdbcType=TIMESTAMP}
+        where resource_id = #{resourceId,jdbcType=BIGINT}
+    </update>
+</mapper>
