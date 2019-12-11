@@ -1,7 +1,6 @@
 package com.practice.mybatis.repository.typehandler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.practice.mybatis.repository.jsonconvert.element.SoftwareOuput;
 import com.practice.mybatis.util.JSON;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author Luo Bao Ding
  * @since 2019/12/11
  */
-@MappedTypes({List.class, SoftwareOuput.class})
+@MappedTypes({List.class})
 @MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = false)
 public class JsonListTypeHandler<T> extends BaseTypeHandler<List<T>> {
 
