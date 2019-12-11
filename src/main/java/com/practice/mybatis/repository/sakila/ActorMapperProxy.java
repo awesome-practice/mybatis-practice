@@ -2,6 +2,7 @@ package com.practice.mybatis.repository.sakila;
 
 import com.practice.mybatis.ao.QueryRequest;
 import com.practice.mybatis.repository.sakila.entity.Actor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,13 +12,11 @@ import java.util.List;
  * @since 2019/11/22
  */
 @Component
-public class ActorMapperProxy  implements ActorMapper  {
+public class ActorMapperProxy implements ActorMapper {
 
-    private final ActorMapper actorMapper;
+    @Autowired
+    private ActorMapper actorMapper;
 
-    public ActorMapperProxy(ActorMapper actorMapper) {
-        this.actorMapper = actorMapper;
-    }
 
     @Override
     public int deleteByPrimaryKey(Short actorId) {

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.mybatis.repository.jsonconvert.PersonMapper">
+    <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        <result column="hobbys" jdbcType="LONGVARCHAR" property="hobbys"/>
+        <result column="contactMap" jdbcType="LONGVARCHAR" property="contactMap"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+    </sql>
+    <sql id="Blob_Column_List">
+        hobbys, contact_map
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from person
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from person
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into person (id, hobbys, contact_map
+        )
+        values (#{id,jdbcType=BIGINT}, #{hobbys,jdbcType=LONGVARCHAR}, #{contact_map,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into person
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="hobbys != null">
+                hobbys,
+            </if>
+            <if test="contactMap != null">
+                contact_map,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="hobbys != null">
+                #{hobbys,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="contactMap != null">
+                #{contact_map,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        update person
+        <set>
+            <if test="hobbys != null">
+                hobbys = #{hobbys,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="contactMap != null">
+                contact_map = #{contact_map,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+        update person
+        set hobbys      = #{hobbys,jdbcType=LONGVARCHAR},
+            contact_map = #{contact_map,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

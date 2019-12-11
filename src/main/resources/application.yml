@@ -2,7 +2,7 @@ spring:
   application:
     name: mybatis-practice
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/sakila
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC
     password: root
     username: root
     type: com.zaxxer.hikari.HikariDataSource
@@ -23,6 +23,7 @@ mybatis:
   configuration:
     default-statement-timeout: 30
     map-underscore-to-camel-case: true
+  type-handlers-package: com.practice.mybatis.repository.typehandler
 #  type-aliases-package: com.practice.mybatis.model
 #若mapper xml与mapper接口共包，则不需要配置;
 #  mapper-locations:

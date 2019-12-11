@@ -11,30 +11,31 @@
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
-        <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-        <!--                        connectionURL="jdbc:mysql://localhost:3306/sakila"-->
-        <!--                        userId="root"-->
-        <!--                        password="root">-->
-        <!--        </jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.100.133:3306/rednet"
+                        connectionURL="jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC"
                         userId="root"
-                        password="38ue(U)00">
+                        password="root">
         </jdbcConnection>
+        <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+        <!--                        connectionURL="jdbc:mysql://192.168.100.133:3306/jsonconvert"-->
+        <!--                        userId="root"-->
+        <!--                        password="38ue(U)00">-->
+        <!--        </jdbcConnection>-->
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.practice.mybatis.repository.rednet.entity"
+        <javaModelGenerator targetPackage="com.practice.mybatis.repository.jsonconvert.entity"
                             targetProject=".\src\main\java">
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.practice.mybatis.repository.rednet" targetProject=".\src\main\resources">
+        <sqlMapGenerator targetPackage="com.practice.mybatis.repository.jsonconvert"
+                         targetProject=".\src\main\resources">
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.repository.rednet"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.practice.mybatis.repository.jsonconvert"
                              targetProject=".\src\main\java">
         </javaClientGenerator>
 
@@ -43,8 +44,14 @@
         <!--        <table tableName="actor"/>-->
         <!--        <table tableName="file"  enableCountByExample="false" enableSelectByExample="false"-->
         <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
-        <table tableName="resource" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false"/>
+        <!--        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"-->
+        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
+        <!--        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"-->
+        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
+        <table tableName="weather" enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>
