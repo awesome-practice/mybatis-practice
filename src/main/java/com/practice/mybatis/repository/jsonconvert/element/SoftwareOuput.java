@@ -1,7 +1,6 @@
 package com.practice.mybatis.repository.jsonconvert.element;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Luo Bao Ding
@@ -9,6 +8,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SoftwareOuput {
     private String softwareName;
     private Integer userCount;

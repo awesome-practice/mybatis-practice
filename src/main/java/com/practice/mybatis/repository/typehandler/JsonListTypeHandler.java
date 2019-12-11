@@ -1,5 +1,6 @@
 package com.practice.mybatis.repository.typehandler;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.mybatis.repository.jsonconvert.element.SoftwareOuput;
 import com.practice.mybatis.util.JSON;
 import org.apache.ibatis.type.BaseTypeHandler;
@@ -33,16 +34,19 @@ public class JsonListTypeHandler<T> extends BaseTypeHandler<List<T>> {
 
     @Override
     public List<T> getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        return JSON.parseList(rs.getString(columnName), clazz);
+        return JSON.parseCollection(rs.getString(columnName), new TypeReference<List<T>>() {
+        });
     }
 
     @Override
     public List<T> getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        return JSON.parseList(rs.getString(columnIndex), clazz);
+        return JSON.parseCollection(rs.getString(columnIndex), new TypeReference<List<T>>() {
+        });
     }
 
     @Override
     public List<T> getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return JSON.parseList(cs.getString(columnIndex), clazz);
+        return JSON.parseCollection(cs.getString(columnIndex), new TypeReference<List<T>>() {
+        });
     }
 }

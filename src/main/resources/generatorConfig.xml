@@ -39,6 +39,7 @@
                              targetProject=".\src\main\java">
         </javaClientGenerator>
 
+
         <!--<table tableName="woman"/>-->
         <!--<table tableName="girl_friend"/>-->
         <!--        <table tableName="actor"/>-->
@@ -46,12 +47,14 @@
         <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
         <!--        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"-->
         <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
-        <!--        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"-->
-        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
-        <table tableName="weather" enableCountByExample="false" enableSelectByExample="false"
+        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false">
             <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
         </table>
+        <!--        <table tableName="weather" enableCountByExample="false" enableSelectByExample="false"-->
+        <!--               enableDeleteByExample="false" enableUpdateByExample="false">-->
+        <!--            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>-->
+        <!--        </table>-->
 
     </context>
 </generatorConfiguration>
