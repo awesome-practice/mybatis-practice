@@ -21,11 +21,6 @@ import java.util.List;
 @MappedTypes({List.class, SoftwareOuput.class})
 @MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = false)
 public class JsonListTypeHandler<T> extends BaseTypeHandler<List<T>> {
-    private Class<T> clazz;
-
-    public JsonListTypeHandler(Class<T> clazz) {
-        this.clazz = clazz;
-    }
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, List<T> parameter, JdbcType jdbcType) throws SQLException {

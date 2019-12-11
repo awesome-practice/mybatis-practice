@@ -20,11 +20,6 @@ import java.util.Map;
 @MappedTypes({Map.class})
 @MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = false)
 public class JsonMapTypeHandler<T> extends BaseTypeHandler<Map<String, T>> {
-    private Class<T> clazz;
-
-    public JsonMapTypeHandler(Class<T> clazz) {
-        this.clazz = clazz;
-    }
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Map<String, T> parameter, JdbcType jdbcType) throws SQLException {
