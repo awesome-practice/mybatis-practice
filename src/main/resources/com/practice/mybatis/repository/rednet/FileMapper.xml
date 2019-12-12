@@ -6,12 +6,10 @@
     <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
     <result column="member_id" jdbcType="BIGINT" property="memberId"/>
     <result column="tenant_id" jdbcType="BIGINT" property="tenantId"/>
-    <result column="copier_member_id" jdbcType="BIGINT" property="copierMemberId"/>
-    <result column="objectpath" jdbcType="VARCHAR" property="objectpath"/>
+    <result column="from_type" jdbcType="TINYINT" property="fromType"/>
     <result column="filename" jdbcType="VARCHAR" property="filename"/>
     <result column="filetype" jdbcType="VARCHAR" property="filetype"/>
     <result column="cover_objectpath" jdbcType="VARCHAR" property="coverObjectpath"/>
-    <result column="origin_objectpath" jdbcType="VARCHAR" property="originObjectpath"/>
     <result column="library_type" jdbcType="TINYINT" property="libraryType"/>
     <result column="storehouse_type" jdbcType="TINYINT" property="storehouseType"/>
     <result column="resource_type" jdbcType="TINYINT" property="resourceType"/>
@@ -21,25 +19,26 @@
     <result column="is_shared" jdbcType="BIT" property="isShared"/>
     <result column="is_in_recyclebin" jdbcType="BIT" property="isInRecyclebin"/>
     <result column="is_cover_customed" jdbcType="BIT" property="isCoverCustomed"/>
+    <result column="review_state" jdbcType="TINYINT" property="reviewState"/>
     <result column="transcode_state" jdbcType="TINYINT" property="transcodeState"/>
     <result column="watermark_state" jdbcType="TINYINT" property="watermarkState"/>
-    <result column="audit_state" jdbcType="TINYINT" property="auditState"/>
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
              type="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    <result column="to_types" jdbcType="LONGVARCHAR" property="toTypes"/>
     <result column="dir_path" jdbcType="LONGVARCHAR" property="dirPath"/>
     <result column="ai_analyse_states" jdbcType="LONGVARCHAR" property="aiAnalyseStates"/>
   </resultMap>
   <sql id="Base_Column_List">
-    resource_id, parent_id, member_id, tenant_id, copier_member_id, objectpath, filename,
-    filetype, cover_objectpath, origin_objectpath, library_type, storehouse_type, resource_type,
-    is_dir, is_on_shelf, is_open, is_shared, is_in_recyclebin, is_cover_customed, transcode_state,
-    watermark_state, audit_state, update_time, create_time
+    resource_id, parent_id, member_id, tenant_id, from_type, filename, filetype, cover_objectpath,
+    library_type, storehouse_type, resource_type, is_dir, is_on_shelf, is_open, is_shared,
+    is_in_recyclebin, is_cover_customed, review_state, transcode_state, watermark_state,
+    update_time, create_time
   </sql>
   <sql id="Blob_Column_List">
-    dir_path, ai_analyse_states
+    to_types, dir_path, ai_analyse_states
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select
@@ -56,24 +55,21 @@
   </delete>
   <insert id="insert" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
     insert into file (resource_id, parent_id, member_id,
-                      tenant_id, copier_member_id, objectpath,
-                      filename, filetype, cover_objectpath,
-                      origin_objectpath, library_type, storehouse_type,
-                      resource_type, is_dir, is_on_shelf,
-                      is_open, is_shared, is_in_recyclebin,
-                      is_cover_customed, transcode_state, watermark_state,
-                      audit_state, update_time, create_time,
-                      dir_path, ai_analyse_states)
+                      tenant_id, from_type, filename,
+                      filetype, cover_objectpath, library_type,
+                      storehouse_type, resource_type, is_dir,
+                      is_on_shelf, is_open, is_shared, is_in_recyclebin,
+                      is_cover_customed, review_state, transcode_state,
+                      watermark_state, update_time, create_time,
+                      to_types, dir_path, ai_analyse_states)
     values (#{resourceId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT},
-            #{tenantId,jdbcType=BIGINT}, #{copierMemberId,jdbcType=BIGINT}, #{objectpath,jdbcType=VARCHAR},
-            #{filename,jdbcType=VARCHAR}, #{filetype,jdbcType=VARCHAR}, #{coverObjectpath,jdbcType=VARCHAR},
-            #{originObjectpath,jdbcType=VARCHAR}, #{libraryType,jdbcType=TINYINT},
-            #{storehouseType,jdbcType=TINYINT},
-            #{resourceType,jdbcType=TINYINT}, #{isDir,jdbcType=BIT}, #{isOnShelf,jdbcType=BIT},
-            #{isOpen,jdbcType=BIT}, #{isShared,jdbcType=BIT}, #{isInRecyclebin,jdbcType=BIT},
-            #{isCoverCustomed,jdbcType=BIT}, #{transcodeState,jdbcType=TINYINT}, #{watermarkState,jdbcType=TINYINT},
-            #{auditState,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
-            #{dirPath,jdbcType=LONGVARCHAR}, #{aiAnalyseStates,jdbcType=LONGVARCHAR})
+            #{tenantId,jdbcType=BIGINT}, #{fromType,jdbcType=TINYINT}, #{filename,jdbcType=VARCHAR},
+            #{filetype,jdbcType=VARCHAR}, #{coverObjectpath,jdbcType=VARCHAR}, #{libraryType,jdbcType=TINYINT},
+            #{storehouseType,jdbcType=TINYINT}, #{resourceType,jdbcType=TINYINT}, #{isDir,jdbcType=BIT},
+            #{isOnShelf,jdbcType=BIT}, #{isOpen,jdbcType=BIT}, #{isShared,jdbcType=BIT}, #{isInRecyclebin,jdbcType=BIT},
+            #{isCoverCustomed,jdbcType=BIT}, #{reviewState,jdbcType=TINYINT}, #{transcodeState,jdbcType=TINYINT},
+            #{watermarkState,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+            #{toTypes,jdbcType=LONGVARCHAR}, #{dirPath,jdbcType=LONGVARCHAR}, #{aiAnalyseStates,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
     insert into file
@@ -90,11 +86,8 @@
       <if test="tenantId != null">
         tenant_id,
       </if>
-      <if test="copierMemberId != null">
-        copier_member_id,
-      </if>
-      <if test="objectpath != null">
-        objectpath,
+      <if test="fromType != null">
+        from_type,
       </if>
       <if test="filename != null">
         filename,
@@ -104,9 +97,6 @@
       </if>
       <if test="coverObjectpath != null">
         cover_objectpath,
-      </if>
-      <if test="originObjectpath != null">
-        origin_objectpath,
       </if>
       <if test="libraryType != null">
         library_type,
@@ -135,20 +125,23 @@
       <if test="isCoverCustomed != null">
         is_cover_customed,
       </if>
+      <if test="reviewState != null">
+        review_state,
+      </if>
       <if test="transcodeState != null">
         transcode_state,
       </if>
       <if test="watermarkState != null">
         watermark_state,
       </if>
-      <if test="auditState != null">
-        audit_state,
-      </if>
       <if test="updateTime != null">
         update_time,
       </if>
       <if test="createTime != null">
         create_time,
+      </if>
+      <if test="toTypes != null">
+        to_types,
       </if>
       <if test="dirPath != null">
         dir_path,
@@ -170,11 +163,8 @@
       <if test="tenantId != null">
         #{tenantId,jdbcType=BIGINT},
       </if>
-      <if test="copierMemberId != null">
-        #{copierMemberId,jdbcType=BIGINT},
-      </if>
-      <if test="objectpath != null">
-        #{objectpath,jdbcType=VARCHAR},
+      <if test="fromType != null">
+        #{fromType,jdbcType=TINYINT},
       </if>
       <if test="filename != null">
         #{filename,jdbcType=VARCHAR},
@@ -184,9 +174,6 @@
       </if>
       <if test="coverObjectpath != null">
         #{coverObjectpath,jdbcType=VARCHAR},
-      </if>
-      <if test="originObjectpath != null">
-        #{originObjectpath,jdbcType=VARCHAR},
       </if>
       <if test="libraryType != null">
         #{libraryType,jdbcType=TINYINT},
@@ -215,20 +202,23 @@
       <if test="isCoverCustomed != null">
         #{isCoverCustomed,jdbcType=BIT},
       </if>
+      <if test="reviewState != null">
+        #{reviewState,jdbcType=TINYINT},
+      </if>
       <if test="transcodeState != null">
         #{transcodeState,jdbcType=TINYINT},
       </if>
       <if test="watermarkState != null">
         #{watermarkState,jdbcType=TINYINT},
       </if>
-      <if test="auditState != null">
-        #{auditState,jdbcType=TINYINT},
-      </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toTypes != null">
+        #{toTypes,jdbcType=LONGVARCHAR},
       </if>
       <if test="dirPath != null">
         #{dirPath,jdbcType=LONGVARCHAR},
@@ -238,8 +228,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective"
-          parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
     update file
     <set>
       <if test="parentId != null">
@@ -251,11 +240,8 @@
       <if test="tenantId != null">
         tenant_id = #{tenantId,jdbcType=BIGINT},
       </if>
-      <if test="copierMemberId != null">
-        copier_member_id = #{copierMemberId,jdbcType=BIGINT},
-      </if>
-      <if test="objectpath != null">
-        objectpath = #{objectpath,jdbcType=VARCHAR},
+      <if test="fromType != null">
+        from_type = #{fromType,jdbcType=TINYINT},
       </if>
       <if test="filename != null">
         filename = #{filename,jdbcType=VARCHAR},
@@ -265,9 +251,6 @@
       </if>
       <if test="coverObjectpath != null">
         cover_objectpath = #{coverObjectpath,jdbcType=VARCHAR},
-      </if>
-      <if test="originObjectpath != null">
-        origin_objectpath = #{originObjectpath,jdbcType=VARCHAR},
       </if>
       <if test="libraryType != null">
         library_type = #{libraryType,jdbcType=TINYINT},
@@ -296,20 +279,23 @@
       <if test="isCoverCustomed != null">
         is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
       </if>
+      <if test="reviewState != null">
+        review_state = #{reviewState,jdbcType=TINYINT},
+      </if>
       <if test="transcodeState != null">
         transcode_state = #{transcodeState,jdbcType=TINYINT},
       </if>
       <if test="watermarkState != null">
         watermark_state = #{watermarkState,jdbcType=TINYINT},
       </if>
-      <if test="auditState != null">
-        audit_state = #{auditState,jdbcType=TINYINT},
-      </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toTypes != null">
+        to_types = #{toTypes,jdbcType=LONGVARCHAR},
       </if>
       <if test="dirPath != null">
         dir_path = #{dirPath,jdbcType=LONGVARCHAR},
@@ -320,18 +306,15 @@
     </set>
     where resource_id = #{resourceId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs"
-          parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
     update file
     set parent_id         = #{parentId,jdbcType=BIGINT},
         member_id         = #{memberId,jdbcType=BIGINT},
         tenant_id         = #{tenantId,jdbcType=BIGINT},
-        copier_member_id  = #{copierMemberId,jdbcType=BIGINT},
-        objectpath        = #{objectpath,jdbcType=VARCHAR},
+        from_type         = #{fromType,jdbcType=TINYINT},
         filename          = #{filename,jdbcType=VARCHAR},
         filetype          = #{filetype,jdbcType=VARCHAR},
         cover_objectpath  = #{coverObjectpath,jdbcType=VARCHAR},
-        origin_objectpath = #{originObjectpath,jdbcType=VARCHAR},
         library_type      = #{libraryType,jdbcType=TINYINT},
         storehouse_type   = #{storehouseType,jdbcType=TINYINT},
         resource_type     = #{resourceType,jdbcType=TINYINT},
@@ -341,11 +324,12 @@
         is_shared         = #{isShared,jdbcType=BIT},
         is_in_recyclebin  = #{isInRecyclebin,jdbcType=BIT},
         is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
+        review_state      = #{reviewState,jdbcType=TINYINT},
         transcode_state   = #{transcodeState,jdbcType=TINYINT},
         watermark_state   = #{watermarkState,jdbcType=TINYINT},
-        audit_state       = #{auditState,jdbcType=TINYINT},
         update_time       = #{updateTime,jdbcType=TIMESTAMP},
         create_time       = #{createTime,jdbcType=TIMESTAMP},
+        to_types          = #{toTypes,jdbcType=LONGVARCHAR},
         dir_path          = #{dirPath,jdbcType=LONGVARCHAR},
         ai_analyse_states = #{aiAnalyseStates,jdbcType=LONGVARCHAR}
     where resource_id = #{resourceId,jdbcType=BIGINT}
@@ -355,12 +339,10 @@
     set parent_id         = #{parentId,jdbcType=BIGINT},
         member_id         = #{memberId,jdbcType=BIGINT},
         tenant_id         = #{tenantId,jdbcType=BIGINT},
-        copier_member_id  = #{copierMemberId,jdbcType=BIGINT},
-        objectpath        = #{objectpath,jdbcType=VARCHAR},
+        from_type         = #{fromType,jdbcType=TINYINT},
         filename          = #{filename,jdbcType=VARCHAR},
         filetype          = #{filetype,jdbcType=VARCHAR},
         cover_objectpath  = #{coverObjectpath,jdbcType=VARCHAR},
-        origin_objectpath = #{originObjectpath,jdbcType=VARCHAR},
         library_type      = #{libraryType,jdbcType=TINYINT},
         storehouse_type   = #{storehouseType,jdbcType=TINYINT},
         resource_type     = #{resourceType,jdbcType=TINYINT},
@@ -370,9 +352,9 @@
         is_shared         = #{isShared,jdbcType=BIT},
         is_in_recyclebin  = #{isInRecyclebin,jdbcType=BIT},
         is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
+        review_state      = #{reviewState,jdbcType=TINYINT},
         transcode_state   = #{transcodeState,jdbcType=TINYINT},
         watermark_state   = #{watermarkState,jdbcType=TINYINT},
-        audit_state       = #{auditState,jdbcType=TINYINT},
         update_time       = #{updateTime,jdbcType=TIMESTAMP},
         create_time       = #{createTime,jdbcType=TIMESTAMP}
     where resource_id = #{resourceId,jdbcType=BIGINT}

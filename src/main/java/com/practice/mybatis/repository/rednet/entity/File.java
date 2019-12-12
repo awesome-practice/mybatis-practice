@@ -11,17 +11,13 @@ public class File {
 
     private Long tenantId;
 
-    private Long copierMemberId;
-
-    private String objectpath;
+    private Byte fromType;
 
     private String filename;
 
     private String filetype;
 
     private String coverObjectpath;
-
-    private String originObjectpath;
 
     private Byte libraryType;
 
@@ -41,11 +37,11 @@ public class File {
 
     private Boolean isCoverCustomed;
 
+    private Byte reviewState;
+
     private Byte transcodeState;
 
     private Byte watermarkState;
-
-    private Byte auditState;
 
     private Date updateTime;
 
@@ -83,20 +79,12 @@ public class File {
         this.tenantId = tenantId;
     }
 
-    public Long getCopierMemberId() {
-        return copierMemberId;
+    public Byte getFromType() {
+        return fromType;
     }
 
-    public void setCopierMemberId(Long copierMemberId) {
-        this.copierMemberId = copierMemberId;
-    }
-
-    public String getObjectpath() {
-        return objectpath;
-    }
-
-    public void setObjectpath(String objectpath) {
-        this.objectpath = objectpath == null ? null : objectpath.trim();
+    public void setFromType(Byte fromType) {
+        this.fromType = fromType;
     }
 
     public String getFilename() {
@@ -121,14 +109,6 @@ public class File {
 
     public void setCoverObjectpath(String coverObjectpath) {
         this.coverObjectpath = coverObjectpath == null ? null : coverObjectpath.trim();
-    }
-
-    public String getOriginObjectpath() {
-        return originObjectpath;
-    }
-
-    public void setOriginObjectpath(String originObjectpath) {
-        this.originObjectpath = originObjectpath == null ? null : originObjectpath.trim();
     }
 
     public Byte getLibraryType() {
@@ -203,6 +183,14 @@ public class File {
         this.isCoverCustomed = isCoverCustomed;
     }
 
+    public Byte getReviewState() {
+        return reviewState;
+    }
+
+    public void setReviewState(Byte reviewState) {
+        this.reviewState = reviewState;
+    }
+
     public Byte getTranscodeState() {
         return transcodeState;
     }
@@ -217,14 +205,6 @@ public class File {
 
     public void setWatermarkState(Byte watermarkState) {
         this.watermarkState = watermarkState;
-    }
-
-    public Byte getAuditState() {
-        return auditState;
-    }
-
-    public void setAuditState(Byte auditState) {
-        this.auditState = auditState;
     }
 
     public Date getUpdateTime() {

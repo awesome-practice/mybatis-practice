@@ -1,9 +1,19 @@
 package com.practice.mybatis.repository.rednet.entity;
 
 public class FileWithBLOBs extends File {
+    private String toTypes;
+
     private String dirPath;
 
     private String aiAnalyseStates;
+
+    public String getToTypes() {
+        return toTypes;
+    }
+
+    public void setToTypes(String toTypes) {
+        this.toTypes = toTypes == null ? null : toTypes.trim();
+    }
 
     public String getDirPath() {
         return dirPath;

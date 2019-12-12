@@ -47,4 +47,20 @@ class PersonMapperTest {
     @Test
     void updateByPrimaryKeySelective() {
     }
+
+    @Test
+    void selectAll() {
+        List<Person> people = personMapper.selectAll();
+        for (Person person : people) {
+            System.out.println(person);
+        }
+    }
+
+    @Test
+    void selectHobbysAll() {
+        List<String> allHobbys = personMapper.selectHobbys(5L);
+        for (String allHobby : allHobbys) {
+            System.out.println("allHobby = " + allHobby);
+        }
+    }
 }

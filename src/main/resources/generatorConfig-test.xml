@@ -16,11 +16,6 @@
                         userId="root"
                         password="root">
         </jdbcConnection>
-        <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-        <!--                        connectionURL="jdbc:mysql://192.168.100.133:3306/jsonconvert"-->
-        <!--                        userId="root"-->
-        <!--                        password="38ue(U)00">-->
-        <!--        </jdbcConnection>-->
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -40,13 +35,6 @@
         </javaClientGenerator>
 
 
-        <!--<table tableName="woman"/>-->
-        <!--<table tableName="girl_friend"/>-->
-        <!--        <table tableName="actor"/>-->
-        <!--        <table tableName="file"  enableCountByExample="false" enableSelectByExample="false"-->
-        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
-        <!--        <table tableName="person" enableCountByExample="false" enableSelectByExample="false"-->
-        <!--               enableDeleteByExample="false" enableUpdateByExample="false"/>-->
         <table tableName="person" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false">
             <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
