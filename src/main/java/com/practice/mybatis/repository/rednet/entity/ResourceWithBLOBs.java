@@ -1,7 +1,7 @@
 package com.practice.mybatis.repository.rednet.entity;
 
 public class ResourceWithBLOBs extends Resource {
-    private String handwrittenKeywords;
+    private String keywords;
 
     private String customLabels;
 
@@ -21,12 +21,12 @@ public class ResourceWithBLOBs extends Resource {
 
     private String aiNlpLabels;
 
-    public String getHandwrittenKeywords() {
-        return handwrittenKeywords;
+    public String getKeywords() {
+        return keywords;
     }
 
-    public void setHandwrittenKeywords(String handwrittenKeywords) {
-        this.handwrittenKeywords = handwrittenKeywords == null ? null : handwrittenKeywords.trim();
+    public void setKeywords(String keywords) {
+        this.keywords = keywords == null ? null : keywords.trim();
     }
 
     public String getCustomLabels() {

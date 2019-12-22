@@ -5,9 +5,15 @@ import java.util.Date;
 public class Resource {
     private Long resourceId;
 
-    private Byte rank;
+    private String previewObjectpath;
+
+    private String originObjectpath;
 
     private String valueTypes;
+
+    private Byte rank;
+
+    private Long size;
 
     private Integer intrinsicHeight;
 
@@ -22,8 +28,6 @@ public class Resource {
     private String intrinsicCopyrightDescription;
 
     private Integer durationLength;
-
-    private String previewObjectpath;
 
     private String keyframeObjectpath;
 
@@ -43,12 +47,20 @@ public class Resource {
         this.resourceId = resourceId;
     }
 
-    public Byte getRank() {
-        return rank;
+    public String getPreviewObjectpath() {
+        return previewObjectpath;
     }
 
-    public void setRank(Byte rank) {
-        this.rank = rank;
+    public void setPreviewObjectpath(String previewObjectpath) {
+        this.previewObjectpath = previewObjectpath == null ? null : previewObjectpath.trim();
+    }
+
+    public String getOriginObjectpath() {
+        return originObjectpath;
+    }
+
+    public void setOriginObjectpath(String originObjectpath) {
+        this.originObjectpath = originObjectpath == null ? null : originObjectpath.trim();
     }
 
     public String getValueTypes() {
@@ -57,6 +69,22 @@ public class Resource {
 
     public void setValueTypes(String valueTypes) {
         this.valueTypes = valueTypes == null ? null : valueTypes.trim();
+    }
+
+    public Byte getRank() {
+        return rank;
+    }
+
+    public void setRank(Byte rank) {
+        this.rank = rank;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     public Integer getIntrinsicHeight() {
@@ -113,14 +141,6 @@ public class Resource {
 
     public void setDurationLength(Integer durationLength) {
         this.durationLength = durationLength;
-    }
-
-    public String getPreviewObjectpath() {
-        return previewObjectpath;
-    }
-
-    public void setPreviewObjectpath(String previewObjectpath) {
-        this.previewObjectpath = previewObjectpath == null ? null : previewObjectpath.trim();
     }
 
     public String getKeyframeObjectpath() {

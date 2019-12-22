@@ -36,7 +36,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="file" enableCountByExample="false" enableSelectByExample="false"
+        <table tableName="resource" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false"/>
 
 
