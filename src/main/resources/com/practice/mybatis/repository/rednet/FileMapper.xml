@@ -22,8 +22,10 @@
     <result column="review_state" jdbcType="TINYINT" property="reviewState"/>
     <result column="transcode_state" jdbcType="TINYINT" property="transcodeState"/>
     <result column="watermark_state" jdbcType="TINYINT" property="watermarkState"/>
+    <result column="is_old" jdbcType="BIT" property="isOld"/>
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
              type="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
@@ -35,7 +37,7 @@
     resource_id, parent_id, member_id, tenant_id, from_type, filename, filetype, cover_objectpath,
     library_type, storehouse_type, resource_type, is_dir, is_on_shelf, is_open, is_shared,
     is_in_recyclebin, is_cover_customed, review_state, transcode_state, watermark_state,
-    update_time, create_time
+    is_old, update_time, create_time, delete_time
   </sql>
   <sql id="Blob_Column_List">
     to_types, dir_path, ai_analyse_states
@@ -60,16 +62,18 @@
                       storehouse_type, resource_type, is_dir,
                       is_on_shelf, is_open, is_shared, is_in_recyclebin,
                       is_cover_customed, review_state, transcode_state,
-                      watermark_state, update_time, create_time,
-                      to_types, dir_path, ai_analyse_states)
+                      watermark_state, is_old, update_time,
+                      create_time, delete_time, to_types,
+                      dir_path, ai_analyse_states)
     values (#{resourceId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT},
             #{tenantId,jdbcType=BIGINT}, #{fromType,jdbcType=TINYINT}, #{filename,jdbcType=VARCHAR},
             #{filetype,jdbcType=VARCHAR}, #{coverObjectpath,jdbcType=VARCHAR}, #{libraryType,jdbcType=TINYINT},
             #{storehouseType,jdbcType=TINYINT}, #{resourceType,jdbcType=TINYINT}, #{isDir,jdbcType=BIT},
             #{isOnShelf,jdbcType=BIT}, #{isOpen,jdbcType=BIT}, #{isShared,jdbcType=BIT}, #{isInRecyclebin,jdbcType=BIT},
             #{isCoverCustomed,jdbcType=BIT}, #{reviewState,jdbcType=TINYINT}, #{transcodeState,jdbcType=TINYINT},
-            #{watermarkState,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
-            #{toTypes,jdbcType=LONGVARCHAR}, #{dirPath,jdbcType=LONGVARCHAR}, #{aiAnalyseStates,jdbcType=LONGVARCHAR})
+            #{watermarkState,jdbcType=TINYINT}, #{isOld,jdbcType=BIT}, #{updateTime,jdbcType=TIMESTAMP},
+            #{createTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{toTypes,jdbcType=LONGVARCHAR},
+            #{dirPath,jdbcType=LONGVARCHAR}, #{aiAnalyseStates,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
     insert into file
@@ -134,11 +138,17 @@
       <if test="watermarkState != null">
         watermark_state,
       </if>
+      <if test="isOld != null">
+        is_old,
+      </if>
       <if test="updateTime != null">
         update_time,
       </if>
       <if test="createTime != null">
         create_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
       </if>
       <if test="toTypes != null">
         to_types,
@@ -211,11 +221,17 @@
       <if test="watermarkState != null">
         #{watermarkState,jdbcType=TINYINT},
       </if>
+      <if test="isOld != null">
+        #{isOld,jdbcType=BIT},
+      </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
       </if>
       <if test="toTypes != null">
         #{toTypes,jdbcType=LONGVARCHAR},
@@ -288,11 +304,17 @@
       <if test="watermarkState != null">
         watermark_state = #{watermarkState,jdbcType=TINYINT},
       </if>
+      <if test="isOld != null">
+        is_old = #{isOld,jdbcType=BIT},
+      </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
       </if>
       <if test="toTypes != null">
         to_types = #{toTypes,jdbcType=LONGVARCHAR},
@@ -327,8 +349,10 @@
         review_state      = #{reviewState,jdbcType=TINYINT},
         transcode_state   = #{transcodeState,jdbcType=TINYINT},
         watermark_state   = #{watermarkState,jdbcType=TINYINT},
+        is_old            = #{isOld,jdbcType=BIT},
         update_time       = #{updateTime,jdbcType=TIMESTAMP},
         create_time       = #{createTime,jdbcType=TIMESTAMP},
+        delete_time       = #{deleteTime,jdbcType=TIMESTAMP},
         to_types          = #{toTypes,jdbcType=LONGVARCHAR},
         dir_path          = #{dirPath,jdbcType=LONGVARCHAR},
         ai_analyse_states = #{aiAnalyseStates,jdbcType=LONGVARCHAR}
@@ -355,8 +379,10 @@
         review_state      = #{reviewState,jdbcType=TINYINT},
         transcode_state   = #{transcodeState,jdbcType=TINYINT},
         watermark_state   = #{watermarkState,jdbcType=TINYINT},
+        is_old            = #{isOld,jdbcType=BIT},
         update_time       = #{updateTime,jdbcType=TIMESTAMP},
-        create_time       = #{createTime,jdbcType=TIMESTAMP}
+        create_time       = #{createTime,jdbcType=TIMESTAMP},
+        delete_time       = #{deleteTime,jdbcType=TIMESTAMP}
     where resource_id = #{resourceId,jdbcType=BIGINT}
   </update>
 </mapper>

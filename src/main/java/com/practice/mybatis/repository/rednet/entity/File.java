@@ -43,9 +43,13 @@ public class File {
 
     private Byte watermarkState;
 
+    private Boolean isOld;
+
     private Date updateTime;
 
     private Date createTime;
+
+    private Date deleteTime;
 
     public Long getResourceId() {
         return resourceId;
@@ -207,6 +211,14 @@ public class File {
         this.watermarkState = watermarkState;
     }
 
+    public Boolean getIsOld() {
+        return isOld;
+    }
+
+    public void setIsOld(Boolean isOld) {
+        this.isOld = isOld;
+    }
+
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -221,5 +233,13 @@ public class File {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getDeleteTime() {
+        return deleteTime;
+    }
+
+    public void setDeleteTime(Date deleteTime) {
+        this.deleteTime = deleteTime;
     }
 }
