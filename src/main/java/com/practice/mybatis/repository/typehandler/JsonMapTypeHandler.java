@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 2019/12/11
  */
 @MappedTypes({Map.class})
-@MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = false)
+@MappedJdbcTypes(value = {JdbcType.VARCHAR, JdbcType.LONGVARCHAR}, includeNullJdbcType = false)
 public class JsonMapTypeHandler<T> extends BaseTypeHandler<Map<String, T>> {
 
     @Override

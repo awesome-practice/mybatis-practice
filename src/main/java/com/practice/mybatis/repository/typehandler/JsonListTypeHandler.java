@@ -18,7 +18,7 @@ import java.util.List;
  * @since 2019/12/11
  */
 @MappedTypes({List.class})
-@MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = false)
+@MappedJdbcTypes(value = {JdbcType.VARCHAR, JdbcType.LONGVARCHAR}, includeNullJdbcType = false)
 public class JsonListTypeHandler<T> extends BaseTypeHandler<List<T>> {
 
     @Override
