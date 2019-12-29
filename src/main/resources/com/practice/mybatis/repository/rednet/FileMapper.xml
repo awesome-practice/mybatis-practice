@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.mybatis.repository.rednet.FileMapper">
+  <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.rednet.entity.File">
+    <id column="resource_id" jdbcType="BIGINT" property="resourceId"/>
+    <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+    <result column="member_id" jdbcType="BIGINT" property="memberId"/>
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId"/>
+    <result column="from_type" jdbcType="TINYINT" property="fromType"/>
+    <result column="filename" jdbcType="VARCHAR" property="filename"/>
+    <result column="filetype" jdbcType="VARCHAR" property="filetype"/>
+    <result column="cover_objectpath" jdbcType="VARCHAR" property="coverObjectpath"/>
+    <result column="library_type" jdbcType="TINYINT" property="libraryType"/>
+    <result column="storehouse_type" jdbcType="TINYINT" property="storehouseType"/>
+    <result column="resource_type" jdbcType="TINYINT" property="resourceType"/>
+    <result column="is_dir" jdbcType="BIT" property="isDir"/>
+    <result column="is_on_shelf" jdbcType="BIT" property="isOnShelf"/>
+    <result column="is_open" jdbcType="BIT" property="isOpen"/>
+    <result column="is_shared" jdbcType="BIT" property="isShared"/>
+    <result column="is_in_recyclebin" jdbcType="BIT" property="isInRecyclebin"/>
+    <result column="is_cover_customed" jdbcType="BIT" property="isCoverCustomed"/>
+    <result column="review_state" jdbcType="TINYINT" property="reviewState"/>
+    <result column="transcode_state" jdbcType="TINYINT" property="transcodeState"/>
+    <result column="watermark_state" jdbcType="TINYINT" property="watermarkState"/>
+    <result column="is_old" jdbcType="BIT" property="isOld"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+             type="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    <result column="to_types" jdbcType="LONGVARCHAR" property="toTypes"/>
+    <result column="dir_path" jdbcType="LONGVARCHAR" property="dirPath"/>
+    <result column="ai_analyse_states" jdbcType="LONGVARCHAR" property="aiAnalyseStates"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    resource_id, parent_id, member_id, tenant_id, from_type, filename, filetype, cover_objectpath,
+    library_type, storehouse_type, resource_type, is_dir, is_on_shelf, is_open, is_shared,
+    is_in_recyclebin, is_cover_customed, review_state, transcode_state, watermark_state,
+    is_old, update_time, create_time, delete_time
+  </sql>
+  <sql id="Blob_Column_List">
+    to_types, dir_path, ai_analyse_states
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from file
+    where resource_id = #{resourceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete
+    from file
+    where resource_id = #{resourceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    insert into file (resource_id, parent_id, member_id,
+                      tenant_id, from_type, filename,
+                      filetype, cover_objectpath, library_type,
+                      storehouse_type, resource_type, is_dir,
+                      is_on_shelf, is_open, is_shared, is_in_recyclebin,
+                      is_cover_customed, review_state, transcode_state,
+                      watermark_state, is_old, update_time,
+                      create_time, delete_time, to_types,
+                      dir_path, ai_analyse_states)
+    values (#{resourceId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT},
+            #{tenantId,jdbcType=BIGINT}, #{fromType,jdbcType=TINYINT}, #{filename,jdbcType=VARCHAR},
+            #{filetype,jdbcType=VARCHAR}, #{coverObjectpath,jdbcType=VARCHAR}, #{libraryType,jdbcType=TINYINT},
+            #{storehouseType,jdbcType=TINYINT}, #{resourceType,jdbcType=TINYINT}, #{isDir,jdbcType=BIT},
+            #{isOnShelf,jdbcType=BIT}, #{isOpen,jdbcType=BIT}, #{isShared,jdbcType=BIT}, #{isInRecyclebin,jdbcType=BIT},
+            #{isCoverCustomed,jdbcType=BIT}, #{reviewState,jdbcType=TINYINT}, #{transcodeState,jdbcType=TINYINT},
+            #{watermarkState,jdbcType=TINYINT}, #{isOld,jdbcType=BIT}, #{updateTime,jdbcType=TIMESTAMP},
+            #{createTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{toTypes,jdbcType=LONGVARCHAR},
+            #{dirPath,jdbcType=LONGVARCHAR}, #{aiAnalyseStates,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    insert into file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resourceId != null">
+        resource_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="fromType != null">
+        from_type,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="filetype != null">
+        filetype,
+      </if>
+      <if test="coverObjectpath != null">
+        cover_objectpath,
+      </if>
+      <if test="libraryType != null">
+        library_type,
+      </if>
+      <if test="storehouseType != null">
+        storehouse_type,
+      </if>
+      <if test="resourceType != null">
+        resource_type,
+      </if>
+      <if test="isDir != null">
+        is_dir,
+      </if>
+      <if test="isOnShelf != null">
+        is_on_shelf,
+      </if>
+      <if test="isOpen != null">
+        is_open,
+      </if>
+      <if test="isShared != null">
+        is_shared,
+      </if>
+      <if test="isInRecyclebin != null">
+        is_in_recyclebin,
+      </if>
+      <if test="isCoverCustomed != null">
+        is_cover_customed,
+      </if>
+      <if test="reviewState != null">
+        review_state,
+      </if>
+      <if test="transcodeState != null">
+        transcode_state,
+      </if>
+      <if test="watermarkState != null">
+        watermark_state,
+      </if>
+      <if test="isOld != null">
+        is_old,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="toTypes != null">
+        to_types,
+      </if>
+      <if test="dirPath != null">
+        dir_path,
+      </if>
+      <if test="aiAnalyseStates != null">
+        ai_analyse_states,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="fromType != null">
+        #{fromType,jdbcType=TINYINT},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="coverObjectpath != null">
+        #{coverObjectpath,jdbcType=VARCHAR},
+      </if>
+      <if test="libraryType != null">
+        #{libraryType,jdbcType=TINYINT},
+      </if>
+      <if test="storehouseType != null">
+        #{storehouseType,jdbcType=TINYINT},
+      </if>
+      <if test="resourceType != null">
+        #{resourceType,jdbcType=TINYINT},
+      </if>
+      <if test="isDir != null">
+        #{isDir,jdbcType=BIT},
+      </if>
+      <if test="isOnShelf != null">
+        #{isOnShelf,jdbcType=BIT},
+      </if>
+      <if test="isOpen != null">
+        #{isOpen,jdbcType=BIT},
+      </if>
+      <if test="isShared != null">
+        #{isShared,jdbcType=BIT},
+      </if>
+      <if test="isInRecyclebin != null">
+        #{isInRecyclebin,jdbcType=BIT},
+      </if>
+      <if test="isCoverCustomed != null">
+        #{isCoverCustomed,jdbcType=BIT},
+      </if>
+      <if test="reviewState != null">
+        #{reviewState,jdbcType=TINYINT},
+      </if>
+      <if test="transcodeState != null">
+        #{transcodeState,jdbcType=TINYINT},
+      </if>
+      <if test="watermarkState != null">
+        #{watermarkState,jdbcType=TINYINT},
+      </if>
+      <if test="isOld != null">
+        #{isOld,jdbcType=BIT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toTypes != null">
+        #{toTypes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dirPath != null">
+        #{dirPath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aiAnalyseStates != null">
+        #{aiAnalyseStates,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    update file
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="fromType != null">
+        from_type = #{fromType,jdbcType=TINYINT},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null">
+        filetype = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="coverObjectpath != null">
+        cover_objectpath = #{coverObjectpath,jdbcType=VARCHAR},
+      </if>
+      <if test="libraryType != null">
+        library_type = #{libraryType,jdbcType=TINYINT},
+      </if>
+      <if test="storehouseType != null">
+        storehouse_type = #{storehouseType,jdbcType=TINYINT},
+      </if>
+      <if test="resourceType != null">
+        resource_type = #{resourceType,jdbcType=TINYINT},
+      </if>
+      <if test="isDir != null">
+        is_dir = #{isDir,jdbcType=BIT},
+      </if>
+      <if test="isOnShelf != null">
+        is_on_shelf = #{isOnShelf,jdbcType=BIT},
+      </if>
+      <if test="isOpen != null">
+        is_open = #{isOpen,jdbcType=BIT},
+      </if>
+      <if test="isShared != null">
+        is_shared = #{isShared,jdbcType=BIT},
+      </if>
+      <if test="isInRecyclebin != null">
+        is_in_recyclebin = #{isInRecyclebin,jdbcType=BIT},
+      </if>
+      <if test="isCoverCustomed != null">
+        is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
+      </if>
+      <if test="reviewState != null">
+        review_state = #{reviewState,jdbcType=TINYINT},
+      </if>
+      <if test="transcodeState != null">
+        transcode_state = #{transcodeState,jdbcType=TINYINT},
+      </if>
+      <if test="watermarkState != null">
+        watermark_state = #{watermarkState,jdbcType=TINYINT},
+      </if>
+      <if test="isOld != null">
+        is_old = #{isOld,jdbcType=BIT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toTypes != null">
+        to_types = #{toTypes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dirPath != null">
+        dir_path = #{dirPath,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="aiAnalyseStates != null">
+        ai_analyse_states = #{aiAnalyseStates,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where resource_id = #{resourceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.practice.mybatis.repository.rednet.entity.FileWithBLOBs">
+    update file
+    set parent_id         = #{parentId,jdbcType=BIGINT},
+        member_id         = #{memberId,jdbcType=BIGINT},
+        tenant_id         = #{tenantId,jdbcType=BIGINT},
+        from_type         = #{fromType,jdbcType=TINYINT},
+        filename          = #{filename,jdbcType=VARCHAR},
+        filetype          = #{filetype,jdbcType=VARCHAR},
+        cover_objectpath  = #{coverObjectpath,jdbcType=VARCHAR},
+        library_type      = #{libraryType,jdbcType=TINYINT},
+        storehouse_type   = #{storehouseType,jdbcType=TINYINT},
+        resource_type     = #{resourceType,jdbcType=TINYINT},
+        is_dir            = #{isDir,jdbcType=BIT},
+        is_on_shelf       = #{isOnShelf,jdbcType=BIT},
+        is_open           = #{isOpen,jdbcType=BIT},
+        is_shared         = #{isShared,jdbcType=BIT},
+        is_in_recyclebin  = #{isInRecyclebin,jdbcType=BIT},
+        is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
+        review_state      = #{reviewState,jdbcType=TINYINT},
+        transcode_state   = #{transcodeState,jdbcType=TINYINT},
+        watermark_state   = #{watermarkState,jdbcType=TINYINT},
+        is_old            = #{isOld,jdbcType=BIT},
+        update_time       = #{updateTime,jdbcType=TIMESTAMP},
+        create_time       = #{createTime,jdbcType=TIMESTAMP},
+        delete_time       = #{deleteTime,jdbcType=TIMESTAMP},
+        to_types          = #{toTypes,jdbcType=LONGVARCHAR},
+        dir_path          = #{dirPath,jdbcType=LONGVARCHAR},
+        ai_analyse_states = #{aiAnalyseStates,jdbcType=LONGVARCHAR}
+    where resource_id = #{resourceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.practice.mybatis.repository.rednet.entity.File">
+    update file
+    set parent_id         = #{parentId,jdbcType=BIGINT},
+        member_id         = #{memberId,jdbcType=BIGINT},
+        tenant_id         = #{tenantId,jdbcType=BIGINT},
+        from_type         = #{fromType,jdbcType=TINYINT},
+        filename          = #{filename,jdbcType=VARCHAR},
+        filetype          = #{filetype,jdbcType=VARCHAR},
+        cover_objectpath  = #{coverObjectpath,jdbcType=VARCHAR},
+        library_type      = #{libraryType,jdbcType=TINYINT},
+        storehouse_type   = #{storehouseType,jdbcType=TINYINT},
+        resource_type     = #{resourceType,jdbcType=TINYINT},
+        is_dir            = #{isDir,jdbcType=BIT},
+        is_on_shelf       = #{isOnShelf,jdbcType=BIT},
+        is_open           = #{isOpen,jdbcType=BIT},
+        is_shared         = #{isShared,jdbcType=BIT},
+        is_in_recyclebin  = #{isInRecyclebin,jdbcType=BIT},
+        is_cover_customed = #{isCoverCustomed,jdbcType=BIT},
+        review_state      = #{reviewState,jdbcType=TINYINT},
+        transcode_state   = #{transcodeState,jdbcType=TINYINT},
+        watermark_state   = #{watermarkState,jdbcType=TINYINT},
+        is_old            = #{isOld,jdbcType=BIT},
+        update_time       = #{updateTime,jdbcType=TIMESTAMP},
+        create_time       = #{createTime,jdbcType=TIMESTAMP},
+        delete_time       = #{deleteTime,jdbcType=TIMESTAMP}
+    where resource_id = #{resourceId,jdbcType=BIGINT}
+  </update>
+</mapper>

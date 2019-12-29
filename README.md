@@ -1,8 +1,9 @@
-执行mybatis-generator:  
+# 执行mybatis-generator:  
 `mvn mybatis-generator:generate`  
-`mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate`
+`mvn  mybatis-generator:generate -Dmybatis.generator.overwrite=true`
+`mvn mybatis-generator:generate -Dmybatis.generator.overwrite=true -Dmybatis.generator.configurationFile=src/main/resources/generatorConfig-rednet.xml`
 
-detail:<br/>
+# detail:<br/>
 [runningWithMaven](http://www.mybatis.org/generator/running/runningWithMaven.html)
   
 
