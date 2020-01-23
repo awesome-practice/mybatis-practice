@@ -22,16 +22,7 @@ public class ActorMapperTest {
     @Autowired
     private ActorMapper actorMapper;
 
-    @Autowired
-    private ActorMapperProxy actorMapperProxy;
 
-
-    @Test
-    void selectAllProxy() {
-        List<Actor> actors = actorMapperProxy.selectAll();
-        System.out.println("actors = " + actors);
-
-    }
     @Test
     void selectAll() {
         List<Actor> actors = actorMapper.selectAll();
