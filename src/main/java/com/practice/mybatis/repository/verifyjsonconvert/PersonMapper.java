@@ -1,6 +1,6 @@
-package com.practice.mybatis.repository.jsonconvert;
+package com.practice.mybatis.repository.verifyjsonconvert;
 
-import com.practice.mybatis.repository.jsonconvert.entity.Person;
+import com.practice.mybatis.repository.verifyjsonconvert.entity.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

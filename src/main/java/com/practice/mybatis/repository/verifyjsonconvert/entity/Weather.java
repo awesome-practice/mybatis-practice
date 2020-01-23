@@ -1,4 +1,4 @@
-package com.practice.mybatis.repository.jsonconvert.entity;
+package com.practice.mybatis.repository.verifyjsonconvert.entity;
 
 public class Weather {
     private Long id;

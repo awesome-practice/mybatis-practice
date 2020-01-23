@@ -1,4 +1,4 @@
-package com.practice.mybatis.dao;
+package com.practice.mybatis.repository.human;
 
 import java.sql.JDBCType;
 import javax.annotation.Generated;

@@ -1,6 +1,6 @@
-package com.practice.mybatis.repository.jsonconvert.entity;
+package com.practice.mybatis.repository.verifyjsonconvert.entity;
 
-import com.practice.mybatis.repository.jsonconvert.element.SoftwareOuput;
+import com.practice.mybatis.repository.verifyjsonconvert.element.SoftwareOuput;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

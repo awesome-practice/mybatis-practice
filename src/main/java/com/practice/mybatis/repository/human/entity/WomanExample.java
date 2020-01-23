@@ -1,4 +1,4 @@
-package com.practice.mybatis.model;
+package com.practice.mybatis.repository.human.entity;
 
 import java.util.ArrayList;
 import java.util.List;

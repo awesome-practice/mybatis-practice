@@ -1,7 +1,7 @@
-package com.practice.mybatis.repository.jsonconvert;
+package com.practice.mybatis.repository.verifyjsonconvert;
 
-import com.practice.mybatis.repository.jsonconvert.element.SoftwareOuput;
-import com.practice.mybatis.repository.jsonconvert.entity.Person;
+import com.practice.mybatis.repository.verifyjsonconvert.element.SoftwareOuput;
+import com.practice.mybatis.repository.verifyjsonconvert.entity.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,4 +1,4 @@
-package com.practice.mybatis.repository.jsonconvert.element;
+package com.practice.mybatis.repository.verifyjsonconvert.element;
 
 import lombok.*;
 

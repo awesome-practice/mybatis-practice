@@ -1,6 +1,6 @@
-package com.practice.mybatis.repository.jsonconvert;
+package com.practice.mybatis.repository.verifyjsonconvert;
 
-import com.practice.mybatis.repository.jsonconvert.entity.Weather;
+import com.practice.mybatis.repository.verifyjsonconvert.entity.Weather;
 
 public interface WeatherMapper {
     int deleteByPrimaryKey(Long id);

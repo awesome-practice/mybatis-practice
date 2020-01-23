@@ -1,7 +1,7 @@
-package com.practice.mybatis.dao;
+package com.practice.mybatis.repository.human;
 
-import com.practice.mybatis.model.Woman;
-import com.practice.mybatis.model.WomanExample;
+import com.practice.mybatis.repository.human.entity.Woman;
+import com.practice.mybatis.repository.human.entity.WomanExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

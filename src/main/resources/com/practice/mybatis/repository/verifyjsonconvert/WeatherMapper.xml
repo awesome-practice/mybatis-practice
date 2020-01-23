@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.practice.mybatis.repository.jsonconvert.WeatherMapper">
-    <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.jsonconvert.entity.Weather">
+<mapper namespace="com.practice.mybatis.repository.verifyjsonconvert.WeatherMapper">
+    <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.verifyjsonconvert.entity.Weather">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="temperature" jdbcType="INTEGER" property="temperature"/>
     </resultMap>
@@ -19,14 +19,14 @@
         from weather
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Weather">
+    <insert id="insert" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Weather">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into weather (temperature)
         values (#{temperature,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Weather">
+    <insert id="insertSelective" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Weather">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -42,7 +42,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Weather">
+    <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Weather">
         update weather
         <set>
             <if test="temperature != null">
@@ -51,7 +51,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Weather">
+    <update id="updateByPrimaryKey" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Weather">
         update weather
         set temperature = #{temperature,jdbcType=INTEGER}
         where id = #{id,jdbcType=BIGINT}

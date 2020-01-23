@@ -1,9 +1,9 @@
-package com.practice.mybatis.dao;
+package com.practice.mybatis.repository.human;
 
-import static com.practice.mybatis.dao.GirlFriendDynamicSqlSupport.*;
+import static com.practice.mybatis.repository.human.GirlFriendDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
-import com.practice.mybatis.model.GirlFriend;
+import com.practice.mybatis.repository.human.entity.GirlFriend;
 import java.util.List;
 import javax.annotation.Generated;
 import org.apache.ibatis.annotations.DeleteProvider;

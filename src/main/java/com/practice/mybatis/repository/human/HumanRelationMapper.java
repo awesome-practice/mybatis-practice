@@ -1,6 +1,6 @@
-package com.practice.mybatis.dao;
+package com.practice.mybatis.repository.human;
 
-import com.practice.mybatis.model.HumanRelation;
+import com.practice.mybatis.repository.human.entity.HumanRelation;
 import java.util.List;
 
 public interface HumanRelationMapper {

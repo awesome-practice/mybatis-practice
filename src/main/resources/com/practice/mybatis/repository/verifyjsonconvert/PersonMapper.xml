@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.practice.mybatis.repository.jsonconvert.PersonMapper">
-  <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.jsonconvert.entity.Person">
+<mapper namespace="com.practice.mybatis.repository.verifyjsonconvert.PersonMapper">
+  <resultMap id="BaseResultMap" type="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     <id column="id" jdbcType="BIGINT" property="id"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-             type="com.practice.mybatis.repository.jsonconvert.entity.Person">
+             type="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     <result column="hobbys" jdbcType="LONGVARCHAR" property="hobbys"/>
     <result column="software_outputs" jdbcType="LONGVARCHAR" property="softwareOutputs"/>
     <result column="contact_map" jdbcType="LONGVARCHAR" property="contactMap"/>
@@ -24,7 +24,7 @@
     from person
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+  <select id="selectAll" resultType="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     select *
     from person
   </select>
@@ -38,7 +38,7 @@
     from person
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+  <insert id="insert" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -47,7 +47,7 @@
     values (#{hobbys,jdbcType=LONGVARCHAR}, #{softwareOutputs,jdbcType=LONGVARCHAR},
     #{contactMap,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+  <insert id="insertSelective" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -75,7 +75,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+  <update id="updateByPrimaryKeySelective" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     update person
     <set>
       <if test="hobbys != null">
@@ -90,7 +90,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.practice.mybatis.repository.jsonconvert.entity.Person">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.practice.mybatis.repository.verifyjsonconvert.entity.Person">
     update person
     set hobbys           = #{hobbys,jdbcType=LONGVARCHAR},
         software_outputs = #{softwareOutputs,jdbcType=LONGVARCHAR},
