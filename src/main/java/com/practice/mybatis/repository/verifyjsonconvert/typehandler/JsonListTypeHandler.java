@@ -1,4 +1,4 @@
-package com.practice.mybatis.repository.typehandler;
+package com.practice.mybatis.repository.verifyjsonconvert.typehandler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.practice.mybatis.util.JSON;
