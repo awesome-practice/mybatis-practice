@@ -86,10 +86,10 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <!--                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>-->
-                    <overwrite>true</overwrite>
-                </configuration>
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>&ndash;&gt;-->
+<!--                    <overwrite>true</overwrite>-->
+<!--                </configuration>-->
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
