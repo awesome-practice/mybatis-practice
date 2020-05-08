@@ -13,7 +13,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.100.133:3306/rednet"
+                        connectionURL="jdbc:mysql://192.168.100.133:3306/rednet?nullCatalogMeansCurrent=true"
                         userId="root"
                         password="38ue(U)00">
         </jdbcConnection>
