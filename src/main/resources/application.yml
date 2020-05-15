@@ -21,7 +21,7 @@ spring:
         maintainTimeStats: false
 mybatis:
   configuration:
-    default-statement-timeout: 30
+    default-statement-timeout: 3  # seconds
     map-underscore-to-camel-case: true
   type-handlers-package: com.practice.mybatis.repository.verifyjsonconvert.typehandler
 #  type-aliases-package: com.practice.mybatis.model
