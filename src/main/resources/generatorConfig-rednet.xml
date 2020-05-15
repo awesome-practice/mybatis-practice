@@ -2,7 +2,14 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-<!-- mvn mybatis-generator:generate -->
+<!--
+usage:
+mvn mybatis-generator:generate
+mvn mybatis-generator:generate
+mvn mybatis-generator:generate -Dmybatis.generator.overwrite=true
+mvn mybatis-generator:generate -Dmybatis.generator.overwrite=true -Dmybatis.generator.configurationFile=src/main/resources/generatorConfig-rednet.xml
+
+ -->
 <!--  http://www.mybatis.org/generator/configreference/xmlconfig.html -->
 <generatorConfiguration>
 
