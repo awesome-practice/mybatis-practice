@@ -10,7 +10,6 @@ import lombok.Data;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 /**
  * @author Luo Bao Ding
