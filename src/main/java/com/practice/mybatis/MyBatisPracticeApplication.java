@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2018/8/14
  */
 @SpringBootApplication
-@MapperScan({"com.practice.mybatis.repository"})
+@MapperScan({"com.practice.mybatis.repository","com.practice.mybatis.resultmap"})
 public class MyBatisPracticeApplication {
 
     public static void main(String[] args) {

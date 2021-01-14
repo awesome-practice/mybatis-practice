@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.mybatis.resultmap.MyRuleWideColumnMapper">
+  <resultMap id="BaseResultMap" type="com.practice.mybatis.resultmap.entity.BaseMyRule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="enable" jdbcType="BIT" property="enable" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <discriminator javaType="int" column="type">
+      <case value="1" resultMap="BackupRule"/>
+      <case value="2" resultMap="RedEyeFlightRule"/>
+      <case value="3" resultType="com.practice.mybatis.resultmap.entity.myrulewidecolumn.TwoEndFlightRule">
+        <result column="two_end_flight_number_per" jdbcType="INTEGER" property="twoEndFlightNumberPer" />
+        <result column="two_end_flight_number_max" jdbcType="INTEGER" property="twoEndFlightNumberMax" />
+      </case>
+    </discriminator>
+  </resultMap>
+
+  <resultMap id="BackupRule" type="com.practice.mybatis.resultmap.entity.myrulewidecolumn.BackupRule" extends="BaseResultMap">
+    <result column="backup_number_per" jdbcType="INTEGER" property="backupNumberPer" />
+    <result column="backup_number_max" jdbcType="INTEGER" property="backupNumberMax" />
+  </resultMap>
+  <resultMap id="RedEyeFlightRule" type="com.practice.mybatis.resultmap.entity.myrulewidecolumn.RedEyeFlightRule" extends="BaseResultMap">
+    <result column="red_eye_flight_number_per" jdbcType="INTEGER" property="redEyeFlightNumberPer" />
+    <result column="red_eye_flight_number_max" jdbcType="INTEGER" property="redEyeFlightNumberMax" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select *
+    from my_rule_wide_column
+  </select>
+
+
+  <insert id="insertBackupRule">
+    insert into my_rule_wide_column(group_id, type, backup_number_per, backup_number_max)
+    value (
+    #{entity.groupId},
+    #{entity.type},
+    #{entity.backupNumberPer},
+    #{entity.backupNumberMax}
+    )
+  </insert>
+
+  <insert id="insertRedEyeFlightRule">
+    insert into my_rule_wide_column(group_id, type, red_eye_flight_number_per, red_eye_flight_number_max)
+    value (
+    #{entity.groupId},
+    #{entity.type},
+    #{entity.redEyeFlightNumberPer},
+    #{entity.redEyeFlightNumberMax}
+    )
+  </insert>
+
+  <insert id="insertTwoEndFlightRule">
+    insert into my_rule_wide_column(group_id, type, two_end_flight_number_per, two_end_flight_number_max)
+    value (
+    #{entity.groupId},
+    #{entity.type},
+    #{entity.twoEndFlightNumberPer},
+    #{entity.twoEndFlightNumberMax}
+    )
+  </insert>
+</mapper>

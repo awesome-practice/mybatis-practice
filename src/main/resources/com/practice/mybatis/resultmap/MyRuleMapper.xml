@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.mybatis.resultmap.MyRuleMapper">
+    <resultMap id="BaseResultMap" type="com.practice.mybatis.resultmap.entity.MyRule">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="enable"  property="enable"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <discriminator javaType="int" column="type">
+            <case value="1">
+                <result property="data" column="data" javaType="com.practice.mybatis.resultmap.entity.myrule.MyRuleBackup"
+                        typeHandler="com.practice.mybatis.util.JacksonTypeHandler"/>
+            </case>
+            <case value="2">
+                <result property="data" column="data" javaType="com.practice.mybatis.resultmap.entity.myrule.MyRuleRedEyeFlight"
+                        typeHandler="com.practice.mybatis.util.JacksonTypeHandler"/>
+            </case>
+            <case value="3">
+                <result property="data" column="data" javaType="com.practice.mybatis.resultmap.entity.myrule.MyRuleTwoEndFlight"
+                        typeHandler="com.practice.mybatis.util.JacksonTypeHandler"/>
+            </case>
+        </discriminator>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select *
+        from my_rule
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
+        insert into my_rule(group_id, type, data)
+        values (#{entity.groupId},
+                #{entity.type},
+                #{entity.data,typeHandler=com.practice.mybatis.util.JacksonTypeHandler})
+    </insert>
+
+    <select id="selectByType" resultMap="BaseResultMap">
+        select *
+        from my_rule
+        where type=#{type}
+    </select>
+</mapper>
