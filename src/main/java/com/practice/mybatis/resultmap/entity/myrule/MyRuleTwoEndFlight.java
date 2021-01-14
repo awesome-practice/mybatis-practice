@@ -9,7 +9,6 @@ import lombok.ToString;
 @RuleType(RuleTypeEnum.TwoEndFlightRule)
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MyRuleTwoEndFlight {
     /**
      * 两头班次数，多少天内

@@ -9,7 +9,6 @@ import lombok.ToString;
 @RuleType(RuleTypeEnum.RedEyeFlightRule)
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MyRuleRedEyeFlight {
     /**
      * 红眼航班次数，多少天内

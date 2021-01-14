@@ -9,7 +9,6 @@ import lombok.ToString;
 @RuleType(RuleTypeEnum.BackupRule)
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class MyRuleBackup {
     /**
      * 天内备份次数不能超过
