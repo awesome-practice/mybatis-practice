@@ -1,10 +1,13 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: mybatis-practice
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/sakila?serverTimezone=UTC
-    password: root
+    url: jdbc:mysql://127.0.0.1:3306/sakila?serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: hikari-pool
@@ -21,7 +24,7 @@ spring:
         maintainTimeStats: false
 mybatis:
   configuration:
-    default-statement-timeout: 30
+    default-statement-timeout: 3  # seconds
     map-underscore-to-camel-case: true
   type-handlers-package: com.practice.mybatis.repository.verifyjsonconvert.typehandler
 #  type-aliases-package: com.practice.mybatis.model
